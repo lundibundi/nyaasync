@@ -2,16 +2,10 @@ const nyaa = require('./nyaasync');
 const nyaa2 = require('./nyaasync2');
 const fs = require('fs');
 
-function sleep(delay) {
-    const start = new Date().getTime();
-    while (new Date().getTime() - start < delay) {}
-}
-
 function f1 (data, callback) {
     console.log('f1');
     console.log('f1 data: ', JSON.stringify(data));
-    sleep(1000);
-    callback({f1: 'f1'});
+    setTimeout(() => callback({f1: 'f1'}), 3000);
 };
 
 function f2 (data, callback) {
@@ -38,7 +32,6 @@ function pf1 (data, callback) {
 
 function pf2 (data, callback) {
     console.log('pf2');
-    // console.log('pf2 data: ', JSON.stringify(data));
     fs.readFile("bbb", (err, data) => {
         console.log("pf2", data);
         callback({pf2: data});
